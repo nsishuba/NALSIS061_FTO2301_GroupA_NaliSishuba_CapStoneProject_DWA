@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Ysabeau Infant', sans-serif;
+    
+}
+.login--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: 5vh; */
+    max-width: 50%;
+    margin-left: 25%;
+    /* background-color: blue; */
+}
+
+.mic--img {
+    max-width: 40%;
+    height: 30%;
+}
+.title {
+    font-weight: 600;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+.description {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.login--button {
+    background-color: #875ee6;
+    border: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 12px;
+    margin: 10px;
+}
+.signup--button {
+    background-color: none;
+    border: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 12px;
+    margin: 10px;
+}
+
+@media (min-width: 320px) and (max-width: 425px) {
+    .login--container {
+        max-width: 100vh;
+        margin-left: 0%;
+    }
+    .mic--img {
+   
+        margin-top: 5px;
+    }
+    .title {
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+    .description {
+        margin-bottom: 10px;
+        padding-left: 20px;
+    }
+  }
+
