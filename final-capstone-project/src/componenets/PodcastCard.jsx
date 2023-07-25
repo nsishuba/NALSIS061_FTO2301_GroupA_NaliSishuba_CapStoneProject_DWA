@@ -10,12 +10,13 @@ const PodcastCard = (prop) => {
            <Card sx={{ maxWidth: 225,  borderRadius: 3 }}>
             <CardActionArea>
                 <CardMedia
-                    sx={{ height: 200 }}
+                    // sx={{ height: 200 }}
                     image={prop.image}
-                    title="green iguana"
+                    component="img"
+                    alt="podcast cover image"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="span">
                     {prop.title}
                     </Typography>
                 </CardContent>
