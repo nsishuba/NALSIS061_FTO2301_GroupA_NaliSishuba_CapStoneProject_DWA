@@ -15,9 +15,10 @@ const Sidebar = () => {
                         return (
                             <Button 
                                     color="secondary" 
-                                    sx={{ height: { sx: "10%" , md: "90%"},
-                                    borderRadius: "15px"}}
-                                     key={genre.id}>
+                                    sx={{ height: { xs: "auto", md: "95%"},
+                                    mx: { xs: 5, md: 0 },
+                                    borderRadius: "15px" }}
+                                    key={genre.id}>
                                 {genre.title}
                             </Button>
                            

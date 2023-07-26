@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import PodcastCard from "../componenets/PodcastCard";
+import PodcastCard from "./PodcastCard";
 import data from "../data.js";
 import { Container } from "@mui/material";
 
