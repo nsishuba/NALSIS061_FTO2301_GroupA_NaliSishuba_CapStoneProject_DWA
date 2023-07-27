@@ -1,6 +1,5 @@
-import Grid from "@mui/material/Grid";
 import PodcastCard from "./PodcastCard";
-import { Container } from "@mui/material";
+import { Stack, Box } from "@mui/material";
 
 const Podcasts = (prop) => {
   const { selectedGenre, filteredPodcasts } = prop
@@ -11,24 +10,20 @@ const Podcasts = (prop) => {
 
   const podcastList = filteredPodcasts.map((podcast) => {
     return (
-            <Grid item key={podcast.id} xs={12} sm={4} md={2} >
-                <PodcastCard image={podcast.image} 
+            <Box key={podcast.id}>
+                <PodcastCard 
+                             podcastID={podcast.id}
+                             image={podcast.image} 
                              title={podcast.title} 
-                             handleClick 
                 />
-            </Grid>
+            </Box>
         ) 
   });
 
   return (
-    <Container>
-        <Grid container 
-              spacing={3}
-              justifyContent="center"
-              alignItems="strech">
+    <Stack direction="row" flexWrap="wrap" justifyContent="start" gap={6}>
             {podcastList}
-        </Grid>
-    </Container>
+    </Stack>
   );
 };
 

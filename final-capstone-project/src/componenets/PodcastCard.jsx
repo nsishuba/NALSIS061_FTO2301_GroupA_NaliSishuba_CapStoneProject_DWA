@@ -1,28 +1,32 @@
-import Card from '@mui/material/Card';
-import { CardActionArea } from '@mui/material';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import {Typography, Card, CardContent, CardMedia } from '@mui/material';
+import { Link } from "react-router-dom";
+
 
 const PodcastCard = (prop) => {
+    const { podcastID, image, title } = prop
+
     return (
-        <div>
-           <Card sx={{ maxWidth: 225,  borderRadius: 3 }}>
-            <CardActionArea>
+           <Card sx={{ maxWidth: {md: 225, xs: 180},  borderRadius: 1 }}>
+            <Link to={`/id/${podcastID}`}>
                 <CardMedia
-                    // sx={{ height: 200 }}
-                    image={prop.image}
+                    sx={{ width: 181, height: 140 }}
+                    image={image}
                     component="img"
-                    alt="podcast cover image"
+                    alt={title}
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h6" component="span">
-                    {prop.title}
+            </Link>
+             <CardContent sx={{ marginLeft: "5px", 
+                                backgroundColor: "none", 
+                                height: "70px", 
+                                width: "170px"
+                            }}>
+                <Link to={`/id/${podcastID}`} underline="none">
+                    <Typography variant="subtitle2" color="#7b1fa2">
+                    {title.slice(0, 40)}
                     </Typography>
-                </CardContent>
-            </CardActionArea>
+                </Link>
+             </CardContent>
           </Card>
-        </div>
     )
 }
 

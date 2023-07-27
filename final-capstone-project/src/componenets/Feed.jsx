@@ -28,7 +28,11 @@ const Feed = (prop) => {
                 <Sidebar podcastData={podcastData}
                          onSelect={handleGenreSelection} />
             </Box>
-            <Box sx={{ overflowY: "auto", height: "90vh", flex: 2}}>
+            <Box sx={{ overflowY: "auto", 
+                       height: "90vh", 
+                       flex: 2, 
+                       ml: 4,
+                    }}>
                 <Typography variant="h5" sx={{color: "#7b1fa2", 
                                               fontWeight: "bold", 
                                               m: 2 }}>

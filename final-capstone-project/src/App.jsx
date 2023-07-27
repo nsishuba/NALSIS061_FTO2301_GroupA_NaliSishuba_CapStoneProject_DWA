@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Box } from "@mui/material"
 import Feed from "./componenets/Feed"
 import Navbar from "./componenets/Navbar"
+import Podcasts from "./componenets/Podcasts"
+import PodcastDetail from "./componenets/PodcastDetail"
 import { useState, useEffect } from "react";
 import "./App.css"
 
@@ -21,8 +23,9 @@ const App = () => {
       <Box sx={{ backgroundClip: "#000" }}>
         <Navbar />
         <Routes>
-          <Route path="/" exact element={<Feed podcastData={podcastData} />} />
-          {/* <Route path="/id/<ID>" exact element={<PodcastInfo />} /> */}
+          <Route path="/" element={<Feed podcastData={podcastData} />} />
+          <Route path="/shows" element={<Podcasts />} />
+          <Route path="/id/:id" element={<PodcastDetail />} />
         </Routes>
       </Box>
     </BrowserRouter>
