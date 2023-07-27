@@ -6,13 +6,16 @@ import { useState } from "react";
 const Feed = (prop) => {
     const { podcastData } = prop
 
-    const [selectedGenre, setSelectedGenre ] = useState([])
+    const [selectedGenre, setSelectedGenre ] = useState({})
 
-    const handleGenreSelection = (genreId) => {
-      setSelectedGenre(genreId)
+    const handleGenreSelection = (genreId, genreTitle) => {
+      setSelectedGenre(genreId, genreTitle)
       console.log(selectedGenre)
     } 
 
+    const filteredPodcasts = selectedGenre ?
+    podcastData.filter(podcast => podcast.genres.includes(selectedGenre.id))
+    : podcastData;
 
     return (
         <Stack sx={{ flexDirection: { sx: "column", md: "row" }}}>
@@ -22,17 +25,17 @@ const Feed = (prop) => {
                         mt: 1,
                         px: { sx: 0, md: 2 }
                     }}>
-                <Sidebar
+                <Sidebar podcastData={podcastData}
                          onSelect={handleGenreSelection} />
             </Box>
             <Box sx={{ overflowY: "auto", height: "90vh", flex: 2}}>
-                <Typography variant="h5" sx={{color: "#9c27b0", 
+                <Typography variant="h5" sx={{color: "#7b1fa2", 
                                               fontWeight: "bold", 
                                               m: 2 }}>
-                        <span>Discover</span>
+                        <span>{selectedGenre.title}</span>
                 </Typography>
                 <Podcasts selectedGenre={selectedGenre}
-                          podcastData={podcastData}/>
+                          filteredPodcasts={filteredPodcasts}/>
             </Box>
         </Stack>
     )

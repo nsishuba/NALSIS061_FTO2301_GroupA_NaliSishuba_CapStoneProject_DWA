@@ -3,17 +3,12 @@ import PodcastCard from "./PodcastCard";
 import { Container } from "@mui/material";
 
 const Podcasts = (prop) => {
-  const { selectedGenre, podcastData } = prop
-
-  const filteredPodcasts = selectedGenre ?
-                podcastData.filter(podcast => podcast.genres.includes(selectedGenre))
-                : podcastData;
+  const { selectedGenre, filteredPodcasts } = prop
 
   if (selectedGenre.length === 0) {
     return <p>No podcasts found for the selected genre.</p>
   }
 
-  console.log(filteredPodcasts)
   const podcastList = filteredPodcasts.map((podcast) => {
     return (
             <Grid item key={podcast.id} xs={12} sm={4} md={2} >

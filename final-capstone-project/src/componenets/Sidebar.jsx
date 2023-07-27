@@ -1,9 +1,11 @@
 import { Stack, Button } from "@mui/material";
 import genreData from "../genres.js";
+import { useLinkClickHandler } from "react-router-dom";
 
 const Sidebar = (prop) => {
 
     const { onSelect } = prop
+
 
     return (
             <Stack
@@ -13,16 +15,24 @@ const Sidebar = (prop) => {
                     height: { sx: "auto", md: "95%" },
                     flexDirection: { md: "column" },
                 }}>
-                    {genreData.map((genre) => {
+                            <Button 
+                                    color="secondary" 
+                                    sx={{ height: { xs: "auto", md: "95%"},
+                                    mx: { xs: 5, md: 0 },
+                                    borderRadius: "15px" }}
+                                    >
+                                All
+                            </Button>
+                    {genreData.map(({id, title}) => {
                         return (
                             <Button 
                                     color="secondary" 
                                     sx={{ height: { xs: "auto", md: "95%"},
                                     mx: { xs: 5, md: 0 },
                                     borderRadius: "15px" }}
-                                    key={genre.id}
-                                    onClick={() => onSelect(genre.id)}>
-                                {genre.title}
+                                    key={id}
+                                    onClick={() => onSelect({id, title})}>
+                                {title}
                             </Button>
                            
                         )
