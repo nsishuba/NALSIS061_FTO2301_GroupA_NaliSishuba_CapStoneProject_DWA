@@ -1,6 +1,5 @@
 import { Stack, Button } from "@mui/material";
 import genreData from "../genres.js";
-import { useLinkClickHandler } from "react-router-dom";
 
 const Sidebar = (prop) => {
     const { onSelect } = prop
@@ -18,6 +17,7 @@ const Sidebar = (prop) => {
                         sx={{ height: { xs: "auto", md: "95%"},
                         mx: { xs: 5, md: 0 },
                         borderRadius: "15px" }}
+                        onClick={() => onSelect("")}
                         >
                     All
                 </Button>

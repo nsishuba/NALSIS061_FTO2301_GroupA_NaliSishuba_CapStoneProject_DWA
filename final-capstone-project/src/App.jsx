@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Box } from "@mui/material"
+import { Box, CircularProgress } from "@mui/material"
 import Feed from "./componenets/Feed"
 import Navbar from "./componenets/Navbar"
 import Podcasts from "./componenets/Podcasts"
@@ -11,12 +11,25 @@ import "./App.css"
 const App = () => {
 
   const [podcastData, setPodcastData] = useState([])
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://podcast-api.netlify.app/shows")
         .then(res => res.json())
-        .then(data => setPodcastData(data))
+        .then(data => {
+          setPodcastData(data)
+          setTimeout(() => {
+            setLoading(false);
+            }, 500); })
   }, [])
+
+  if(loading) {
+    return (
+      <Box sx={{ display: "flex", mx: "45%", mt: 25 }}>
+      <CircularProgress color="secondary"/>
+    </Box>
+    )
+  }
 
   return (
     <BrowserRouter>

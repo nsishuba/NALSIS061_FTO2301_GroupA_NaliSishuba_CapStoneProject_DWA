@@ -5,8 +5,7 @@ import { useState } from "react";
 
 const Feed = (prop) => {
     const { podcastData } = prop
-
-    const [selectedGenre, setSelectedGenre ] = useState({})
+    const [selectedGenre, setSelectedGenre ] = useState("")
 
     const handleGenreSelection = (genreId, genreTitle) => {
       setSelectedGenre(genreId, genreTitle)
@@ -15,8 +14,8 @@ const Feed = (prop) => {
 
     const filteredPodcasts = selectedGenre ?
     podcastData.filter(podcast => podcast.genres.includes(selectedGenre.id))
-    : podcastData;
-
+    : podcastData
+  
     return (
         <Stack sx={{ flexDirection: { sx: "column", md: "row" }}}>
             <Box sx={{  height: { sx: "auto", md: "93vh" }, 
@@ -36,7 +35,7 @@ const Feed = (prop) => {
                 <Typography variant="h5" sx={{color: "#7b1fa2", 
                                               fontWeight: "bold", 
                                               m: 2 }}>
-                        <span>{selectedGenre.title}</span>
+                        <span>{selectedGenre ? selectedGenre.title : "Discover"}</span>
                 </Typography>
                 <Podcasts selectedGenre={selectedGenre}
                           filteredPodcasts={filteredPodcasts}/>

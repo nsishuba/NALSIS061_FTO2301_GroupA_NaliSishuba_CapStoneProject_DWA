@@ -1,5 +1,4 @@
 import { Stack, Typography } from "@mui/material"
-import { Link } from "react-router-dom"
 import Logo from "../assets/yoga.png"
 import Searchbar from "./Searchbar"
 

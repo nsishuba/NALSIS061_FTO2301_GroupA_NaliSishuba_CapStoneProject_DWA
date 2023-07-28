@@ -1,24 +1,46 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
-import { Stack, Box, Card, CardMedia, Typography} from "@mui/material"
-import CardContent from '@mui/material/CardContent';
-import PodcastEpisodes from "./PodcastEpisodes" 
+import { useParams, useNavigate } from "react-router-dom"
+import { Stack, Box, Card, CardMedia, Typography, Button, CircularProgress} from "@mui/material"
+import CardContent from '@mui/material/CardContent'
+import SeasonsDropdown from "./SeasonsDropdown"
 
 const PodcastDetail = () => {
     const [podcastDetail, setPodcastDetail] = useState({})
-    const [seasons, setSeasons] = useState([]);
+    const [seasons, setSeasons] = useState([])
+    const [loading, setLoading] = useState(true)
     const { id } = useParams();
+
+    const navigate = useNavigate();
+
+    const goBack = () => {
+        navigate(-1);
+    }
 
     useEffect(() => {
         fetch(`https://podcast-api.netlify.app/id/${id}`)
         .then(res => res.json())
         .then(data => {setPodcastDetail(data)
-        setSeasons(data.seasons)})
+        setSeasons(data.seasons)
+        setTimeout(() => {
+        setLoading(false)
+        }, 500);})
     }, [id])
 
-    console.log(podcastDetail)
+    if(loading) {
+        return (
+          <Box sx={{ display: "flex", mx: "45%", mt: 25 }}>
+          <CircularProgress color="secondary"/>
+        </Box>
+        )
+      }
+
+    
+  
   return (
     <Stack flexDirection="column">
+        <Button variant="outlined" color="secondary" 
+                    sx={{ width: 100, mt: 4, ml: { xs: 2, sm: 4}}}
+                    onClick={goBack}>Back</Button>
         <Card sx={{ display: 'flex', 
                     width: {sm: "auto", xs: "auto"},    
                     height: {md: "auto", xs: "49vh"}, 
@@ -41,7 +63,7 @@ const PodcastDetail = () => {
                 alt="Live from space album cover"
             />
         </Card>
-        <PodcastEpisodes seasons={seasons} />
+        <SeasonsDropdown seasons={seasons}/>
     </Stack>
     
   );
