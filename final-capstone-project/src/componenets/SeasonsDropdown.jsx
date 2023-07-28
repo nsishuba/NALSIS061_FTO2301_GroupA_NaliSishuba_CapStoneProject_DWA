@@ -35,12 +35,12 @@ const SeasonsDropdown = (prop) => {
             <Box sx={{ mx: 4}}>
                 <InputLabel id="select-label">Seasons</InputLabel>
                 <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="select-label"
+                id="select"
                 value={season}
                 label="Seasons"
                 onChange={handleChange}
-                sx={{ width: "20vh", height: "5vh"}}
+                sx={{ width: { md: "28vh", xs: "auto"}, height: "8vh" }}
                 >
                 
                     {selectSeason}

@@ -5,6 +5,9 @@ import { useState } from "react";
 
 const Feed = (prop) => {
     const { podcastData } = prop
+
+    const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
+
     const [selectedGenre, setSelectedGenre ] = useState("")
 
     const handleGenreSelection = (genreId, genreTitle) => {
@@ -38,7 +41,8 @@ const Feed = (prop) => {
                         <span>{selectedGenre ? selectedGenre.title : "Discover"}</span>
                 </Typography>
                 <Podcasts selectedGenre={selectedGenre}
-                          filteredPodcasts={filteredPodcasts}/>
+                          filteredPodcasts={filteredPodcasts}
+                          months={months}/>
             </Box>
         </Stack>
     )

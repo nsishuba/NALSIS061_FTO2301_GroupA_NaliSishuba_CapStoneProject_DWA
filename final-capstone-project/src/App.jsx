@@ -5,13 +5,13 @@ import Navbar from "./componenets/Navbar"
 import Podcasts from "./componenets/Podcasts"
 import PodcastDetail from "./componenets/PodcastDetail"
 import { useState, useEffect } from "react";
+import Fuse from 'fuse.js'
+// import SignIn from "./pages/SignIn"
 import "./App.css"
 
-
 const App = () => {
-
   const [podcastData, setPodcastData] = useState([])
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch("https://podcast-api.netlify.app/shows")
@@ -19,7 +19,7 @@ const App = () => {
         .then(data => {
           setPodcastData(data)
           setTimeout(() => {
-            setLoading(false);
+            setLoading(false)
             }, 500); })
   }, [])
 
@@ -31,11 +31,22 @@ const App = () => {
     )
   }
 
+    const fuse = new Fuse(podcastData, {
+      keys: [
+        "id",
+        "title", 
+        "updated"
+      ],
+      includeScore: false
+    })
+
+
   return (
     <BrowserRouter>
       <Box sx={{ backgroundClip: "#000" }}>
-        <Navbar />
+        <Navbar fuse={fuse} podcastData={podcastData}/>
         <Routes>
+          {/* <Route path="" element={<SignIn />}/> */}
           <Route path="/" element={<Feed podcastData={podcastData} />} />
           <Route path="/shows" element={<Podcasts />} />
           <Route path="/id/:id" element={<PodcastDetail />} />
