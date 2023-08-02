@@ -1,14 +1,15 @@
 import {Typography, Card, CardContent, CardMedia } from '@mui/material'
 import { Link } from "react-router-dom"
 import genreData from "../genres.js"
+import monthsData from "../months.js"
 
 
 const PodcastCard = (prop) => {
-    const { podcastID, image, title, noOfSeasons, lastUpdated, genres, months } = prop
+    const { podcastID, image, title, noOfSeasons, lastUpdated, genres } = prop
 
     const date = new Date(lastUpdated)
     const year = date.getFullYear()
-    const month = months[date.getMonth()]
+    const month = monthsData[date.getMonth()]
     const day = date.getDate()
 
     const dateFormate = `${day} ${month} ${year}`
@@ -31,7 +32,9 @@ const PodcastCard = (prop) => {
              <CardContent sx={{ marginLeft: "5px", 
                                 backgroundColor: "none", 
                                 height: "110px", 
-                                width: "210px"
+                                width: "210px",
+                               
+                                overflow: "hidden"
                             }}>
                 
                 <Typography variant="subtitle2" fontWeight="bold" color="#7b1fa2">
@@ -41,7 +44,7 @@ const PodcastCard = (prop) => {
                      <span>Seasons: {noOfSeasons}</span> <br />
                 </Typography>
                 <Typography variant ="overline text" fontSize="14px" color="#bdbdbd">
-                    <span>Updated: {dateFormate}</span><br />
+                    <span>Updated: {dateFormate ? dateFormate : "Not available"}</span><br />
                     <span>Genres: {genreTitles.join(", ") }</span>
                 </Typography>
              

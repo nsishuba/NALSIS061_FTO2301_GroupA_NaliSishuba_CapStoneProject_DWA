@@ -1,10 +1,8 @@
 import { Stack, Typography } from "@mui/material"
 import Logo from "../assets/yoga.png"
-import SearchFeed from "./SearchFeed"
 
-const Navbar = (prop) => {
-    const { fuse, podcastData } = prop
-
+const Navbar = () => {
+   
     return (
         <Stack 
             direction="row" 
@@ -21,7 +19,6 @@ const Navbar = (prop) => {
                 sx={{ flexGrow: 1, ml: 2 }}>
                 Euphoria
             </Typography>
-            <SearchFeed fuse={fuse} podcastData={podcastData}/>
         </Stack>
     )
 }

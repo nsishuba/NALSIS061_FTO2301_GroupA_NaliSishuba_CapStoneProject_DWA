@@ -3,12 +3,15 @@ import { useParams, useNavigate } from "react-router-dom"
 import { Stack, Box, Card, CardMedia, Typography, Button, CircularProgress} from "@mui/material"
 import CardContent from '@mui/material/CardContent'
 import SeasonsDropdown from "./SeasonsDropdown"
+import monthsData from "../months.js"
 
 const PodcastDetail = () => {
     const [podcastDetail, setPodcastDetail] = useState({})
     const [seasons, setSeasons] = useState([])
+    // const [episodes, setEpisodes] = useState([])
     const [loading, setLoading] = useState(true)
     const [showFullDescription, setShowFullDescription] = useState(false)
+    // const [favouritePodcast, setFavouritePodcast] = useState({favourite: true})
     const { id } = useParams();
 
     const navigate = useNavigate();
@@ -33,13 +36,30 @@ const PodcastDetail = () => {
           <CircularProgress color="secondary"/>
         </Box>
         )
-      }
+    }
 
+    const date = new Date(podcastDetail.updated)
+    const year = date.getFullYear()
+    const month = monthsData[date.getMonth()]
+    const day = date.getDate()
+
+    const dateFormate = `${day} ${month} ${year}`
+
+      
     const showDescription = () => {
         setShowFullDescription((prevState) => !prevState)
     }
     
     const cutDescription = podcastDetail.description.slice(0, 500)
+
+    console.log(podcastDetail)
+    // function toggleFavourite() {
+    //     setFavouritePodcast(prevState => ( 
+    //         !prevState.favourite
+    //     ))
+    // }
+
+    // const heartIcon = isFilled ? <FavoriteIcon /> : <FavoriteBorderIcon />
   
   return (
     <Stack flexDirection="column">
@@ -64,6 +84,12 @@ const PodcastDetail = () => {
                     </Button>
                 )}
                 </Typography>
+                <br />
+                <Typography variant ="overline text" fontSize="14px" color="#bdbdbd">
+                    <span>Updated: {dateFormate ? dateFormate : "Not available"}</span><br />
+                    <span>Genres: {podcastDetail.genres ? podcastDetail.genres.join(", ") : "Not available"}</span>
+                </Typography>
+                
                 </CardContent>
             </Box>
             <CardMedia
